@@ -13,6 +13,7 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var cameraButton: UIButton!
+    var photoSaved: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +70,7 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
-        imageView.image = UIImage(named: "camera")
+        imageView.image = photoSaved
         
         return annotationView
     }
@@ -89,8 +90,8 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         // Get the image captured by the UIImagePickerController
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        
+        //let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        self.photoSaved = originalImage
         // Do something with the images (based on your use case)
         
         // Dismiss UIImagePickerController to go back to your original view controller
